@@ -1,7 +1,10 @@
 package com.jkl.cademinhatribo;
 
+import android.location.Location;
+import android.location.LocationManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.content.Context;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -11,6 +14,9 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
         setContentView(R.layout.activity_main);
     }
 
