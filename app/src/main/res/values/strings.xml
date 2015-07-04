@@ -2,5 +2,7 @@
     <string name="app_name">CadeMinhaTribo</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="login">Login:</string>
+    <string name="senha">Senha:</string>
     <string name="action_settings">Settings</string>
 </resources>
