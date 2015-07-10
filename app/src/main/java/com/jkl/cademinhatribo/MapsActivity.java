@@ -1,8 +1,16 @@
 package com.jkl.cademinhatribo;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Location;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+
+import android.support.v4.app.DialogFragment;
+
+import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -13,6 +21,7 @@ public class MapsActivity extends FragmentActivity {
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
     private double latitude, longitude;
+    private double lat1, long1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +32,8 @@ public class MapsActivity extends FragmentActivity {
 
         latitude = (double) i.getSerializableExtra("lat");
         longitude= (double) i.getSerializableExtra("lon");
+        lat1 = latitude + 40;
+        long1 = longitude + 20;
 
         setUpMapIfNeeded();
     }
@@ -68,6 +79,39 @@ public class MapsActivity extends FragmentActivity {
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
     private void setUpMap() {
+
+
         mMap.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)).title("Marker"));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(lat1, long1)).title("Marker"));
+
+
+
+        Location loc1 = new Location("");
+        loc1.setLatitude(latitude);
+        loc1.setLongitude(longitude);
+
+        Location loc2 = new Location("");
+        loc2.setLatitude(lat1);
+        loc2.setLongitude(long1);
+
+        float distance = loc1.distanceTo(loc2);
+        Log.v("Distance", distance + "");
+
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+
+        // Setting Dialog Title
+        alertDialog.setTitle("Alert Dialog");
+
+        // Setting Dialog Message
+        alertDialog.setMessage("Distancia: " + distance);
+
+        // Setting Icon to Dialog
+        //alertDialog.setIcon(R.drawable.tick);
+
+        // Setting OK Button
+
+        // Showing Alert Message
+        alertDialog.show();
+
     }
 }
