@@ -1,4 +1,4 @@
-package com.jkl.cademinhatribo;
+package com.jkl.test;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
