@@ -28,11 +28,11 @@ public class DatabaseActivity{
 	public Usuario insereUsuarioDB(Usuario usr) {
 
 		ContentValues values = new ContentValues();
-		values.put(dbHelper.COLUNA_NOME, usr.getNome()); // adiciona o nome do País
-		values.put(dbHelper.COLUNA_EMAIL, usr.getEmail());
-		values.put(dbHelper.COLUNA_SENHA, usr.getSenha());
-		values.put(dbHelper.COLUNA_LATITUDE, usr.getLatitude());
-		values.put(dbHelper.COLUNA_LONGITUDE, usr.getLongitude());
+		values.put(MySQLiteHelper.COLUNA_NOME, usr.getNome()); // adiciona o nome do País
+		values.put(MySQLiteHelper.COLUNA_EMAIL, usr.getEmail());
+		values.put(MySQLiteHelper.COLUNA_SENHA, usr.getSenha());
+		values.put(MySQLiteHelper.COLUNA_LATITUDE, usr.getLatitude());
+		values.put(MySQLiteHelper.COLUNA_LONGITUDE, usr.getLongitude());
 
 		long insertId = database.insert(MySQLiteHelper.COLUNA_NOME, null,
 				values);
@@ -98,11 +98,11 @@ public class DatabaseActivity{
 	private Usuario cursorToUsuario(Cursor cursor) {
 		Usuario usr = new Usuario();
 
-		usr.setNome(cursor.getString(cursor.getColumnIndex(dbHelper.COLUNA_NOME)));
-		usr.setEmail(cursor.getString(cursor.getColumnIndex(dbHelper.COLUNA_EMAIL)));
-		usr.setSenha(cursor.getString(cursor.getColumnIndex(dbHelper.COLUNA_SENHA)));
-		usr.setLatitude(cursor.getDouble(cursor.getColumnIndex(dbHelper.COLUNA_LATITUDE)));
-		usr.setLongitude( cursor.getDouble(cursor.getColumnIndex(dbHelper.COLUNA_LONGITUDE)));
+		usr.setNome(cursor.getString(cursor.getColumnIndex(MySQLiteHelper.COLUNA_NOME)));
+		usr.setEmail(cursor.getString(cursor.getColumnIndex(MySQLiteHelper.COLUNA_EMAIL)));
+		usr.setSenha(cursor.getString(cursor.getColumnIndex(MySQLiteHelper.COLUNA_SENHA)));
+		usr.setLatitude(cursor.getDouble(cursor.getColumnIndex(MySQLiteHelper.COLUNA_LATITUDE)));
+		usr.setLongitude( cursor.getDouble(cursor.getColumnIndex(MySQLiteHelper.COLUNA_LONGITUDE)));
 
 		return usr;
 	}

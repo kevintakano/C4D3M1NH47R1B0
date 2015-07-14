@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edicao de Grupo"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+       <!-- <ImageButton
+            android:id="@+id/imageGrupo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/addphoto_grupo" /> -->
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dip"
+
+            android:background="#708090" />
+
+
+        <EditText
+            android:id="@+id/editComentario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Comentario"
+            android:textColor="#000000"
+            android:backgroundTint="#FFFFFF" >
+            <requestFocus />
+        </EditText>
+
+
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dip"
+
+            android:background="#708090" />
+
+         <!-- ____________________ Table______________________-->
+
+        <!-- Exibindo os comentarios dos outros usuarios neste listview-->
+
+        <ListView
+            android:id="@+id/list_comments"
+            android:layout_width="match_parent"
+            android:layout_height="122dp" >
+
+        </ListView>
+
+        <Button
+            android:id="@+id/btnRegistraComentario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Salvar Comentário" />
+
+    </LinearLayout>
+
+</ScrollView>

@@ -30,68 +30,72 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
 
-
-
-
     }
 
     public void onClickButton(View v)
     {
-        try
-        {
-            LocationManager lManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-            LocationListener lListener = new LocationListener() {
-                public void onLocationChanged(Location locat) {
-                    updateView(locat);
-                }
-                public void onStatusChanged(String provider, int status, Bundle extras) {
-                    //final String tvTxt = textView.getText().toString();
-                    switch (status) {
-                        case LocationProvider.AVAILABLE:
-                            System.out.println( "Network location available again\n");
-                            break;
-                        case LocationProvider.OUT_OF_SERVICE:
-                            System.out.println( "Network location out of service\n");
-                            break;
-                        case LocationProvider.TEMPORARILY_UNAVAILABLE:
-                            System.out.println("Network location temporarily unavailable\n");
-                            break;
+        if (v.getId() == R.id.btnGPS) {
+            try {
+                LocationManager lManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                LocationListener lListener = new LocationListener() {
+                    public void onLocationChanged(Location locat) {
+                        updateView(locat);
                     }
+
+                    public void onStatusChanged(String provider, int status, Bundle extras) {
+                        //final String tvTxt = textView.getText().toString();
+                        switch (status) {
+                            case LocationProvider.AVAILABLE:
+                                System.out.println("Network location available again\n");
+                                break;
+                            case LocationProvider.OUT_OF_SERVICE:
+                                System.out.println("Network location out of service\n");
+                                break;
+                            case LocationProvider.TEMPORARILY_UNAVAILABLE:
+                                System.out.println("Network location temporarily unavailable\n");
+                                break;
+                        }
+                    }
+
+                    public void onProviderEnabled(String provider) {
+                    }
+
+                    public void onProviderDisabled(String provider) {
+                    }
+
+                };
+
+                Log.v("MainActivity", "lListener:" + lListener);
+
+                lManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, lListener);
+                Log.v("Network", "Network");
+
+                Double latitude, longitude;
+                Log.v("LManager!: ", "" + lManager);
+
+                if (lManager != null) {
+                    Location location = lManager
+                            .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                    if (location != null) {
+                        latitude = location.getLatitude();
+                        longitude = location.getLongitude();
+                        Log.v("Latlng", "latlng: " + latitude + longitude);
+                        Intent intent = new Intent(this, MapsActivity.class);
+                        intent.putExtra("lat", latitude);
+                        intent.putExtra("lon", longitude);
+                        startActivity(intent);
+                    }
+
                 }
-                public void onProviderEnabled(String provider) {}
-
-                public void onProviderDisabled(String provider) {}
-
-            };
-
-            Log.v("MainActivity", "lListener:" + lListener);
-
-            lManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, lListener);
-            Log.v("Network", "Network");
-
-            Double latitude, longitude;
-            Log.v("LManager!: ","" + lManager);
-
-            if (lManager != null) {
-                Location location = lManager
-                        .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                if (location != null) {
-                    latitude = location.getLatitude();
-                    longitude = location.getLongitude();
-                    Log.v("Latlng","latlng: " + latitude + longitude);
-                    Intent intent = new Intent(this, MapsActivity.class);
-                    intent.putExtra("lat",latitude);
-                    intent.putExtra("lon",longitude);
-                    startActivity(intent);
-                }
+            } catch (Exception e) {
+                Log.v("Erro!: ", "Erro");
 
             }
-        }catch(Exception e)
-        {
-            Log.v("Erro!: ","Erro");
-
         }
-
+       if (v.getId() == R.id.btnRegistro) {
+            final Intent itRegister = new Intent(MainActivity.this, RegisterActivityImpl.class);
+            startActivity(itRegister);
+        }
 
     }
 

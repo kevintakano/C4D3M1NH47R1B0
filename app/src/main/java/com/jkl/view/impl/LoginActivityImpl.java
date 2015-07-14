@@ -7,6 +7,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.jkl.cademinhatribo.MainActivity;
 import com.jkl.view.LoginActivity;
 import com.jkl.cademinhatribo.R;
 /**
@@ -64,7 +66,7 @@ public class LoginActivityImpl extends Activity implements LoginActivity {
     /** {@inheritDoc} **/
     @Override
     public void onClick(final View view) {
-        Intent intent = new Intent(this, MainActivityImpl.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }
